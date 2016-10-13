@@ -24,9 +24,11 @@ class Node
     elsif score > @score
       if @node_right ==nil
         @node_right = Node.new(score, title)
+
       else
         @node_right.insert(score, title)
       end
     end
+    @depth += 1
   end
 end

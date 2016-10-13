@@ -14,6 +14,7 @@ class BinarySearchTreeTest < Minitest::Test
     tree = BinarySearchTree.new
     result = tree.insert(61, "Bill & Ted's Excellent Adventure")
     assert_equal 61, tree.root_node.score
+    assert_equal 0, result
   end
 
   def test_first_item_is_root_node
@@ -29,6 +30,7 @@ class BinarySearchTreeTest < Minitest::Test
     result = tree.insert(16, "Johnny English")
     #binding.pry
     assert_equal 16, tree.root_node.node_left.score
+    assert_equal 1, result
   end
 
   def test_second_item_is_first_item_left
@@ -86,10 +88,14 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 92, tree.max
   end
 
-  def test_load_happens
-    skip
+  def test_depth_of
     tree = BinarySearchTree.new
-    tree.load
+    tree.insert(61, "Bill & Ted's Excellent Adventure")
+    tree.insert(16, "Johnny English")
+    tree.insert(92, "Sharknado 3")
+    tree.insert(50, "Hannibal Buress: Animal Furnace")
+    result = tree.depth_of(50)
+    assert_equal 2, result
   end
 
   def test_includes_61

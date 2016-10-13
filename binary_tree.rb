@@ -9,15 +9,17 @@ class BinarySearchTree
 
   def initialize(score=nil, title=nil)
     @root_node = Node.new(score=nil, title=nil)
+    @depth = 0
   end
 
   def insert(score, title)
     if @root_node.score == nil
        insert_root(score, title)
+       return @depth
     else
       @root_node.insert(score, title)
+      return depth_of(score)
     end
-    return @depth
   end
 
   def insert_root(score, title)
@@ -61,6 +63,23 @@ class BinarySearchTree
     else
       return node.score
     end
+  end
+
+  def depth_of(score)
+    node = @root_node
+    if score == node.node_left.score || node.node_right.score
+
+    else
+      if score > node.score
+        node = node_right
+
+      elsif score < node.score
+        node = node.node_left
+
+      end
+      @depth += 1
+    end
+    @depth += 1
   end
 
   end
